@@ -1,0 +1,31 @@
+body{
+	padding: 0;
+	margin: 0;
+}
+form{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 250px;
+	height: 125px;
+	margin: 10px 0 0 10px;
+}
+form div{
+	display: flex;
+	justify-content: space-between;
+	width: 230px;
+}
+button{
+	width: 150px;
+	height: 30px;
+	margin: 0 auto;
+	text-transform: uppercase;
+}
+.message{
+	border: solid 1px #cccccc;
+	margin: 0 0 10px 0;
+}
+.message p:first-child,
+.message p:nth-child(2){
+	margin: 0;
+}
