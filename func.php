@@ -1,23 +1,27 @@
 <?php
-	function save_mess(){
-		$str = $_POST['name'].'|'.$_POST['text'].'|'.date('Y-m-d H:i:s')."\n***\n";
-		file_put_contents('gb.txt', $str,FILE_APPEND);
-	}
 
-	function get_mess(){
-		return file_get_contents('gb.txt');
+function clear(){
+	global $db;
+	foreach ($_POST as $key => $value) {
+		$_POST[$key] = mysqli_real_escape_string($db, $value);
 	}
+}
 
-	function array_mes($messages){
-		$messages = explode("\n***\n", $messages);
-		array_pop($messages);
-		return array_reverse($messages);
-	}
+function save_mess(){
+	global $db;
+	clear(); 
+	extract($_POST);
+	$query = "INSERT INTO gb (name, text) VALUES ('$name', '$text')";
+	mysqli_query($db, $query);
+}
 
-	function print_arr($arr){
-		echo '<pre>' . print_r($arr,true) . '</pre>';
-	}
-	function get_format_mesaage($message){
-		return explode('|',$message);
-	}
-?>
+function get_mess(){
+	global $db;
+	$query = "SELECT * FROM gb ORDER BY id DESC";
+	$res = mysqli_query($db, $query);
+	return mysqli_fetch_all($res, MYSQLI_ASSOC);
+}
+
+function print_arr($arr){
+	echo '<pre>' . print_r($arr, true) . '</pre>';
+}

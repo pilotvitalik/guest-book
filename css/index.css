@@ -24,6 +24,7 @@ button{
 .message{
 	border: solid 1px #cccccc;
 	margin: 0 0 10px 0;
+	padding: 0 0 0 10px;
 }
 .message p:first-child,
 .message p:nth-child(2){
